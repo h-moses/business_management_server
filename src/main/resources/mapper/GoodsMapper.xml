@@ -65,4 +65,10 @@
     <update id="updateGoods">
         update goods set goods_name = #{goods.goodsName},goods_avatar = #{goods.goodsAvatar},selling_way = #{goods.sellingWay},unit_price = #{goods.unitPrice},box_size = #{goods.boxSize},box_price = #{goods.boxPrice},subordinated_rate = #{goods.subordinatedRate},orgin_place = #{goods.orginPlace},goods_state = #{goods.goodsState},shop_id = #{goods.shopId},good_stuff = #{goods.goodStuff} where goods_id = #{goods.goodsId}
     </update>
+
+    <select id="getCountOnSale" resultType="Integer">
+        select COUNT(*)
+        from goods where shop_id = #{shopId} and goods_state = 1;
+    </select>
+
 </mapper>

@@ -34,4 +34,7 @@ public interface GoodsDao {
     void addGoods(@Param("goods") Goods goods);
 
     void updateGoods(@Param("goods") Goods goods);
+
+    Integer getCountOnSale(@Param("shopId") Integer shopId);
+
 }

@@ -31,4 +31,6 @@ public interface GoodsService {
     void addGoods(Goods goods);
 
     void updateGoods(Goods goods);
+
+    Integer getCountOnSale(Integer shopId);
 }

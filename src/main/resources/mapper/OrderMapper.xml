@@ -43,4 +43,35 @@
             and o.order_state = #{orderState}
         </if>
     </select>
+
+    <select id="getTodayOrderCount" resultType="Integer">
+        select COUNT(*)
+        from `order` where shop_id = #{shopId} and DATEDIFF(order_time,NOW()) = 0
+    </select>
+
+    <select id="getTodayOrderBox" resultType="Integer">
+        select SUM(N.goods_quantity)
+        from `order` O inner join orderNote N on o.order_id = N.order_id where O.shop_id = #{shopId}
+    </select>
+
+    <select id="getOrderGoodsCount" resultType="Integer">
+        select COUNT(DISTINCT o.goods_id)
+        from `order` JOIN orderNote o on `order`.order_id = o.order_id where shop_id = #{shopId} and DATEDIFF(order_time,NOW()) = 0
+    </select>
+
+    <select id="getAllCustomers" resultType="Integer">
+        select COUNT(DISTINCT cs_id)
+        from `order` where shop_id = #{shopId}
+    </select>
+
+    <select id="getTodayCustomers" resultType="Integer">
+        select COUNT(DISTINCT cs_id)
+        from `order` where shop_id = #{shopId} and DATEDIFF(order_time,NOW()) = 0
+    </select>
+
+    <select id="getOldCustomers" resultType="Integer">
+        select COUNT(*)
+        from (select DISTINCT cs_id,MIN(order_time) as mot
+              from `order` where shop_id = #{shopId}) as ciot where DATEDIFF(ciot.mot,NOW()) >= 1
+    </select>
 </mapper>
