@@ -1,6 +1,7 @@
 package com.hary.service.Impl;
 
 import com.hary.dao.OrderDao;
+import com.hary.entity.Order;
 import com.hary.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,17 +17,22 @@ public class OrderServiceImpl implements OrderService {
     private OrderDao orderDao;
 
     @Override
-    public Float getTodayAmount() {
-        return orderDao.getTodayAmount();
+    public Float getTodayAmount(Integer shopId) {
+        return orderDao.getTodayAmount(shopId);
     }
 
     @Override
-    public Integer getNewCustomer() {
-        return orderDao.getNewCustomer();
+    public Integer getNewCustomer(Integer shopId) {
+        return orderDao.getNewCustomer(shopId);
     }
 
     @Override
-    public Integer getSevenDayOrder() {
-        return orderDao.getSevenDayOrder();
+    public Integer getSevenDayOrder(Integer shopId) {
+        return orderDao.getSevenDayOrder(shopId);
+    }
+
+    @Override
+    public Order getOrders(Integer shopId,Integer orderState) {
+        return orderDao.getOrder(shopId,orderState);
     }
 }

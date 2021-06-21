@@ -1,5 +1,7 @@
 package com.hary.dao;
 
+import com.hary.entity.Order;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -8,9 +10,11 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface OrderDao {
 
-    Float getTodayAmount();
+    Float getTodayAmount(@Param("shopId") Integer shopId);
 
-    Integer getNewCustomer();
+    Integer getNewCustomer(@Param("shopId") Integer shopId);
 
-    Integer getSevenDayOrder();
+    Integer getSevenDayOrder(@Param("shopId") Integer shopId);
+
+    Order getOrder(@Param("shopId") Integer shopId,@Param("orderState") Integer orderState);
 }

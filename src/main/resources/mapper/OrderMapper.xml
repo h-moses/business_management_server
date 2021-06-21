@@ -6,19 +6,38 @@
     <select id="getTodayAmount" resultType="Float">
         select SUM(order_amount)
         from `order`
-        where DATEDIFF(order_time, NOW()) = 0
+        where shop_id = #{shopId} and DATEDIFF(order_time, NOW()) = 0
     </select>
 
     <select id="getNewCustomer" resultType="Integer">
         select COUNT(ciot.cs_id)
         from (select DISTINCT cs_id, MIN(order_time) as mot
-              from `order`) as ciot
+              from `order` where shop_id = #{shopId}) as ciot
         where DATEDIFF(ciot.mot, NOW()) = 1;
     </select>
 
     <select id="getSevenDayOrder" resultType="Integer">
         select COUNT(*)
         from `order`
-        where DATEDIFF(order_time, NOW()) >= -7;
+        where shop_id = #{shopId} and DATEDIFF(order_time, NOW()) >= -7;
+    </select>
+
+    <resultMap id="orderDetail" type="Order">
+        <id property="orderId" column="order_id"/>
+        <result property="orderTime" column="order_time"/>
+        <result property="orderAmount" column="order_amount"/>
+        <result property="orderState" column="order_state"/>
+        <association property="notes" javaType="com.hary.entity.OrderNote">
+            <result property="goodsName" column="goods_name"/>
+            <result property="goodsQuantity" column="goods_quantity"/>
+            <result property="goodsAmount" column="goods_amount"/>
+        </association>
+    </resultMap>
+    <select id="getOrder" resultType="orderDetail">
+        select o.order_id,o.order_time,o.order_amount,o.order_state,odn.goods_name,odn.goods_quantity,odn.goods_amount
+        from `order` as o,`orderNote` as odn where o.order_id = odn.order_id
+        <if test="orderState != null">
+            and o.order_state = #{orderState}
+        </if>
     </select>
 </mapper>

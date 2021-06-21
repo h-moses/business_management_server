@@ -4,6 +4,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 /**
  * @author 70982
  */
@@ -19,5 +21,5 @@ public class Order {
     private String orderTime;
     private float orderAmount;
     private Integer orderState;
-
+    private OrderNote notes;
 }
