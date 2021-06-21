@@ -14,6 +14,7 @@ public class Goods {
 
     private Integer goodsId;
     private String goodsName;
+    private String goodsAvatar;
     private Integer sellingWay;
     private Float unitPrice;
     private Float boxSize;

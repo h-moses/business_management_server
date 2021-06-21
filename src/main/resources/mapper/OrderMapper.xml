@@ -36,7 +36,7 @@
             <result property="goodsAmount" column="goods_amount"/>
         </association>
     </resultMap>
-    <select id="getOrder" resultType="orderDetail">
+    <select id="getOrder" resultMap="orderDetail">
         select o.order_id,o.order_time,o.order_amount,o.order_state,odn.goods_name,odn.goods_quantity,odn.goods_amount
         from `order` as o,`orderNote` as odn where o.order_id = odn.order_id
         <if test="orderState != null">
