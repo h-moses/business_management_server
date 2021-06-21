@@ -21,7 +21,7 @@ public class Merchant {
     private String mcAvatar;
     private String mcEmail;
     private String mcRegister;
-    private float mcBalance;
+    private Float mcBalance;
 
 
     public Merchant(String mcName, String mcPwd, String mcPhone, String mcRealName, String mcEmail, String mcRegister) {

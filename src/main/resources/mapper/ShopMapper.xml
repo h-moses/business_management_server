@@ -5,7 +5,7 @@
 <mapper namespace="com.hary.dao.ShopDao">
     <insert id="addShop">
         insert into shop(mc_id, shop_name, major_business, register_time, legal_person)
-        VALUES (#{mcId}, #{shopName}, #{majorBusiness}, #{registerTime}, #{legalPerson})
+        VALUES (#{shop.mcId}, #{shop.shopName}, #{shop.majorBusiness}, #{shop.registerTime}, #{shop.legalPerson})
     </insert>
 
     <select id="queryInfo" resultType="Shop">
