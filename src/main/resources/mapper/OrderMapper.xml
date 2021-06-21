@@ -6,20 +6,23 @@
     <select id="getTodayAmount" resultType="Float">
         select SUM(order_amount)
         from `order`
-        where shop_id = #{shopId} and DATEDIFF(order_time, NOW()) = 0
+        where shop_id = #{shopId}
+          and DATEDIFF(order_time, NOW()) = 0
     </select>
 
     <select id="getNewCustomer" resultType="Integer">
         select COUNT(ciot.cs_id)
         from (select DISTINCT cs_id, MIN(order_time) as mot
-              from `order` where shop_id = #{shopId}) as ciot
+              from `order`
+              where shop_id = #{shopId}) as ciot
         where DATEDIFF(ciot.mot, NOW()) = 1;
     </select>
 
     <select id="getSevenDayOrder" resultType="Integer">
         select COUNT(*)
         from `order`
-        where shop_id = #{shopId} and DATEDIFF(order_time, NOW()) >= -7;
+        where shop_id = #{shopId}
+          and DATEDIFF(order_time, NOW()) >= -7;
     </select>
 
     <resultMap id="orderDetail" type="Order">

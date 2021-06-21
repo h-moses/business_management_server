@@ -32,7 +32,7 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public Order getOrders(Integer shopId,Integer orderState) {
-        return orderDao.getOrder(shopId,orderState);
+    public Order getOrders(Integer shopId, Integer orderState) {
+        return orderDao.getOrder(shopId, orderState);
     }
 }

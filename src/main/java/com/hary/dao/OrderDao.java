@@ -16,5 +16,5 @@ public interface OrderDao {
 
     Integer getSevenDayOrder(@Param("shopId") Integer shopId);
 
-    Order getOrder(@Param("shopId") Integer shopId,@Param("orderState") Integer orderState);
+    Order getOrder(@Param("shopId") Integer shopId, @Param("orderState") Integer orderState);
 }

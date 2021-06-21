@@ -35,17 +35,17 @@ public class OrderController {
         result.data("todayAmount", todayAmount);
         result.data("newCustomer", newCustomer);
         result.data("sevenDayOrder", sevenDayOrder);
-        result.data("todayVisitor",todayVisitor);
+        result.data("todayVisitor", todayVisitor);
         return result;
     }
 
     @PostMapping("/order/query")
     public JsonResult getOrderDetail(@RequestParam("shopId") Integer shopId,
-                                     @RequestParam(required = false,value = "orderState") Integer orderState) {
+                                     @RequestParam(required = false, value = "orderState") Integer orderState) {
         System.out.println(orderState);
         Order order = orderService.getOrders(shopId, orderState);
         JsonResult result = new JsonResult("获取成功", 200, new HashMap<>());
-        result.data("order",order);
+        result.data("order", order);
         return result;
     }
 }

@@ -13,5 +13,5 @@ public interface OrderService {
 
     Integer getSevenDayOrder(Integer shopId);
 
-    Order getOrders(Integer shopId,Integer orderState);
+    Order getOrders(Integer shopId, Integer orderState);
 }
