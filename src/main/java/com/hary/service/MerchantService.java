@@ -9,4 +9,6 @@ public interface MerchantService {
     String validatePwd(String mcPhone);
 
     Merchant getInfo(String mcPhone);
+
+    void amendPwd(Integer mcId,String mcPwd);
 }

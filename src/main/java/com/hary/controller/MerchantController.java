@@ -35,8 +35,8 @@ public class MerchantController {
     }
 
     @PostMapping("/merchant/login")
-    public JsonResult login(@RequestParam("mcPhone") String mcPhone,
-                            @RequestParam("mcPwd") String mcPwd) {
+    public JsonResult login(@RequestParam(value = "mcPhone") String mcPhone,
+                            @RequestParam(value = "mcPwd") String mcPwd) {
         final String pwd = merchantService.validatePwd(mcPhone);
         if (mcPwd.equals(pwd)) {
             return new JsonResult("登录成功", 200, null);
