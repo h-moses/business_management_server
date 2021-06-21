@@ -27,6 +27,11 @@ public class MerchantServiceImpl implements MerchantService {
     }
 
     @Override
+    public String getPwd(Integer mcId) {
+        return merchantDao.queryMcPwdById(mcId);
+    }
+
+    @Override
     public Merchant getInfo(String mcPhone) {
         return merchantDao.queryInfo(mcPhone);
     }

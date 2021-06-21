@@ -15,6 +15,12 @@
         where mc_phone = #{mcPhone}
     </select>
 
+    <select id="queryMcPwdById">
+        select mc_pwd
+        from merchant
+        where mc_id = #{mcId}
+    </select>
+
     <resultMap id="merchantInfo" type="Merchant">
         <id column="mc_id" property="mcId"/>
         <result column="mc_name" property="mcName"/>

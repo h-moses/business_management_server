@@ -8,6 +8,8 @@ public interface MerchantService {
 
     String validatePwd(String mcPhone);
 
+    String getPwd(Integer mcId);
+
     Merchant getInfo(String mcPhone);
 
     void amendPwd(Integer mcId,String mcPwd);

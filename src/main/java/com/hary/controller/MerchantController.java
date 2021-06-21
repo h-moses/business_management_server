@@ -4,6 +4,7 @@ import com.hary.entity.Merchant;
 import com.hary.service.MerchantService;
 import com.hary.utils.JsonResult;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -57,5 +58,20 @@ public class MerchantController {
         } else {
             return new JsonResult("获取失败", 200, null);
         }
+    }
+
+    @GetMapping("/merchant/pwd")
+    public JsonResult getPwd(@RequestParam("mcId") Integer mcId) {
+        String pwd = merchantService.getPwd(mcId);
+        JsonResult result = new JsonResult("获取成功", 200, new HashMap<>());
+        result.data("pwd",pwd);
+        return result;
+    }
+
+    @PostMapping("/merchant/pwd/amend")
+    public JsonResult updatePwd(@RequestParam("mcId") Integer mcId,
+                                @RequestParam("mcPwd") String mcPwd) {
+        merchantService.amendPwd(mcId,mcPwd);
+        return new JsonResult("修改成功",200,null);
     }
 }
