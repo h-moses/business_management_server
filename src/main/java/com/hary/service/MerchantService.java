@@ -1,9 +1,12 @@
 package com.hary.service;
 
-/**
- * @author 70982
- */
-public class MerchantService {
+import com.hary.entity.Merchant;
 
+public interface MerchantService {
 
+    void registerMerchant(Merchant merchant);
+
+    String validatePwd(String mcPhone);
+
+    Merchant getInfo(String mcPhone);
 }

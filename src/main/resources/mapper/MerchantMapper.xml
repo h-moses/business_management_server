@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hary.dao.MerchantDao">
+    <insert id="addMerchant">
+        insert into merchant(mc_phone, mc_name, mc_pwd, mc_realName, mc_email, mc_registerTime)
+        VALUES (#{merchant.mcPhone}, #{merchant.mcName}, #{merchant.mcPwd}, #{merchant.mcRealName}, #{merchant.mcEmail},
+                #{merchant.mcRegister})
+    </insert>
+
+    <select id="queryMcPwd">
+        select mc_pwd
+        from merchant
+        where mc_phone = #{mcPhone};
+    </select>
+
+    <resultMap id="merchantInfo" type="Merchant">
+        <id column="mc_id" property="mcId"/>
+        <result column="mc_name" property="mcName"/>
+        <result column="mc_avatar" property="mcAvatar"/>
+    </resultMap>
+    <select id="queryInfo" resultMap="merchantInfo">
+        select mc_id, mc_name, mc_avatar
+        from merchant
+        where mc_phone = #{mcPhone};
+    </select>
+</mapper>

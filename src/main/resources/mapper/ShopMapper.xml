@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hary.dao.ShopDao">
+    <insert id="addShop">
+        insert into shop(mc_id, shop_name, major_business, register_time, legal_person)
+        VALUES (#{mcId}, #{shopName}, #{majorBusiness}, #{registerTime}, #{legalPerson})
+    </insert>
+
+    <select id="queryInfo" resultType="Shop">
+        select *
+        from shop
+        where mc_id = #{mcId};
+    </select>
+</mapper>
