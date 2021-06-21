@@ -25,7 +25,7 @@
         <result property="goodsAvatar" column="goods_avatar"/>
         <result property="storeQuantity" column="store_quantity"/>
     </resultMap>
-    <select id="getStoreList" resultType="storeGoods">
+    <select id="getStoreList" resultMap="storeGoods">
         select goods_id,goods_name,goods_avatar,store_quantity
         from goods where shop_id = #{shopId}
         <if test="condition != null and condition != 0">
@@ -38,5 +38,31 @@
 
     <update id="updateStore">
         update goods set goods_name = #{goodsName},store_quantity = #{storeQuantity} where goods_id = #{goodsId}
+    </update>
+
+    <select id="getGoodsByName" resultType="Goods">
+        select *
+        from goods where shop_id = #{shopId} and goods_name like CONCAT('%',#{goodsName},'%')
+    </select>
+
+    <select id="getGoodsByState" resultType="Goods">
+        select *
+        from goods where shop_id = #{shopId} and goods_state = #{goodsState}
+    </select>
+
+    <delete id="deleteGoods">
+        delete from goods where goods_id = #{goodsId}
+    </delete>
+
+    <update id="updateState">
+        update goods set goods_state = #{goodsState} where goods_id = #{goodsId}
+    </update>
+
+    <insert id="addGoods">
+        insert into goods(goods_name, goods_avatar, selling_way, unit_price, box_size, box_price, subordinated_rate, orgin_place, goods_state, shop_id, good_stuff) VALUES(#{goods.goodsName},#{goods.goodsAvatar},#{goods.sellingWay},#{goods.unitPrice},#{goods.boxSize},#{goods.boxPrice},#{goods.subordinatedRate},#{goods.orginPlace},#{goods.goodsState},#{goods.shopId},#{goods.goodStuff})
+    </insert>
+
+    <update id="updateGoods">
+        update goods set goods_name = #{goods.goodsName},goods_avatar = #{goods.goodsAvatar},selling_way = #{goods.sellingWay},unit_price = #{goods.unitPrice},box_size = #{goods.boxSize},box_price = #{goods.boxPrice},subordinated_rate = #{goods.subordinatedRate},orgin_place = #{goods.orginPlace},goods_state = #{goods.goodsState},shop_id = #{goods.shopId},good_stuff = #{goods.goodStuff} where goods_id = #{goods.goodsId}
     </update>
 </mapper>

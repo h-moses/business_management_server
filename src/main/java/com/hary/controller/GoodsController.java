@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.HashMap;
+import java.util.List;
 
 /**
  * @author 70982
@@ -34,7 +35,7 @@ public class GoodsController {
     @PostMapping("/store/list")
     public JsonResult getStoreList(@RequestParam("shopId") Integer shopId,
                                    @RequestParam(required = false,value = "condition") Integer condition) {
-        Goods storeList = goodsService.getStoreList(shopId, condition);
+        List<Goods> storeList = goodsService.getStoreList(shopId, condition);
         JsonResult result = new JsonResult("获取成功",200,new HashMap<>());
         result.data("list",storeList);
         return result;

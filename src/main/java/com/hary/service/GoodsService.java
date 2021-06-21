@@ -3,6 +3,8 @@ package com.hary.service;
 import com.hary.entity.Goods;
 import org.apache.ibatis.annotations.Param;
 
+import java.util.List;
+
 /**
  * @author 70982
  */
@@ -14,7 +16,19 @@ public interface GoodsService {
 
     Integer getZeroStore(Integer shopId);
 
-    Goods getStoreList(Integer shopId,Integer condition);
+    List<Goods> getStoreList(Integer shopId, Integer condition);
 
     void updateStore(Integer goodsId,String goodsName,Integer storeQuantity);
+
+    List<Goods> getGoodsByName(Integer shopId,String goodsName);
+
+    List<Goods> getGoodsByState(Integer shopId,Integer goodsState);
+
+    void deleteGoods(Integer goodsId);
+
+    void updateState(Integer goodsId,Integer goodsState);
+
+    void addGoods(Goods goods);
+
+    void updateGoods(Goods goods);
 }

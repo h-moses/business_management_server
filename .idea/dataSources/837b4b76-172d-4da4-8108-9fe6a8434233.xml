@@ -1030,6 +1030,7 @@ cs_phone</ColNames>
       <Comment>商品销量</Comment>
       <DataType>int(10) unsigned zerofill|0s</DataType>
       <NotNull>1</NotNull>
+      <DefaultExpression>0</DefaultExpression>
     </column>
     <column id="312" parent="286" name="shop_id">
       <Position>12</Position>
@@ -1046,6 +1047,7 @@ cs_phone</ColNames>
       <Comment>库存数量</Comment>
       <DataType>int(10) unsigned zerofill|0s</DataType>
       <NotNull>1</NotNull>
+      <DefaultExpression>0</DefaultExpression>
     </column>
     <index id="315" parent="286" name="FK_GOODS_SHOP">
       <ColNames>shop_id</ColNames>
