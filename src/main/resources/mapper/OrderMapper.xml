@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hary.dao.OrderDao">
+    <select id="getTodayAmount" resultType="Float">
+        select SUM(order_amount)
+        from `order`
+        where DATEDIFF(order_time, NOW()) = 0
+    </select>
+
+    <select id="getNewCustomer" resultType="Integer">
+        select COUNT(ciot.cs_id)
+        from (select DISTINCT cs_id, MIN(order_time) as mot
+              from `order`) as ciot
+        where DATEDIFF(ciot.mot, NOW()) = 1;
+    </select>
+
+    <select id="getSevenDayOrder" resultType="Integer">
+        select COUNT(*)
+        from `order`
+        where DATEDIFF(order_time, NOW()) >= -7;
+    </select>
+</mapper>

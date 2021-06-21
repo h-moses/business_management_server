@@ -38,6 +38,6 @@ public class MerchantServiceImpl implements MerchantService {
 
     @Override
     public void amendPwd(Integer mcId, String mcPwd) {
-        merchantDao.updatePwd(mcId,mcPwd);
+        merchantDao.updatePwd(mcId, mcPwd);
     }
 }

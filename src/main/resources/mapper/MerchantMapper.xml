@@ -33,7 +33,9 @@
     </select>
 
     <update id="updatePwd">
-        update merchant set mc_pwd = #{mcPwd} where mc_id = #{mcId}
+        update merchant
+        set mc_pwd = #{mcPwd}
+        where mc_id = #{mcId}
     </update>
 
 </mapper>

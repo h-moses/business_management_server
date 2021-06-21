@@ -64,14 +64,14 @@ public class MerchantController {
     public JsonResult getPwd(@RequestParam("mcId") Integer mcId) {
         String pwd = merchantService.getPwd(mcId);
         JsonResult result = new JsonResult("获取成功", 200, new HashMap<>());
-        result.data("pwd",pwd);
+        result.data("pwd", pwd);
         return result;
     }
 
     @PostMapping("/merchant/pwd/amend")
     public JsonResult updatePwd(@RequestParam("mcId") Integer mcId,
                                 @RequestParam("mcPwd") String mcPwd) {
-        merchantService.amendPwd(mcId,mcPwd);
-        return new JsonResult("修改成功",200,null);
+        merchantService.amendPwd(mcId, mcPwd);
+        return new JsonResult("修改成功", 200, null);
     }
 }

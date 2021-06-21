@@ -10,7 +10,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface ShopDao {
 
-    public void addShop(@Param("shop") Shop shop);
+    void addShop(@Param("shop") Shop shop);
 
-    public Shop queryInfo(@Param("mcId") Integer mcId);
+    Shop queryInfo(@Param("mcId") Integer mcId);
 }

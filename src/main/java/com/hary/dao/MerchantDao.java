@@ -18,5 +18,5 @@ public interface MerchantDao {
 
     Merchant queryInfo(@Param("mcPhone") String mcPhone);
 
-    void updatePwd(@Param("mcId") Integer mcId,@Param("mcPwd") String mcPwd);
+    void updatePwd(@Param("mcId") Integer mcId, @Param("mcPwd") String mcPwd);
 }
