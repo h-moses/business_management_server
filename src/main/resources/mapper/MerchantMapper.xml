@@ -9,13 +9,13 @@
                 #{merchant.mcRegister})
     </insert>
 
-    <select id="queryMcPwd">
+    <select id="queryMcPwd" resultType="String">
         select mc_pwd
         from merchant
         where mc_phone = #{mcPhone}
     </select>
 
-    <select id="queryMcPwdById">
+    <select id="queryMcPwdById" resultType="String">
         select mc_pwd
         from merchant
         where mc_id = #{mcId}
@@ -37,5 +37,10 @@
         set mc_pwd = #{mcPwd}
         where mc_id = #{mcId}
     </update>
+
+    <select id="queryMcPhone" resultType="Integer">
+        select COUNT(*)
+        from merchant where mc_phone = #{mcPhone};
+    </select>
 
 </mapper>

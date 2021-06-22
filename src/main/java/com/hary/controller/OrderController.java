@@ -5,6 +5,7 @@ import com.hary.service.BrowserService;
 import com.hary.service.OrderService;
 import com.hary.utils.JsonResult;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -17,6 +18,7 @@ import java.util.HashMap;
  */
 
 @RestController
+@Transactional
 public class OrderController {
 
     @Autowired
@@ -25,7 +27,7 @@ public class OrderController {
     @Autowired
     private BrowserService browserService;
 
-    @GetMapping("/index/data")
+    @PostMapping("/index/data")
     public JsonResult getIndexData(@RequestParam("shopId") Integer shopId) {
         Float todayAmount = orderService.getTodayAmount(shopId);
         Integer newCustomer = orderService.getNewCustomer(shopId);

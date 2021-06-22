@@ -37,4 +37,6 @@ public interface GoodsDao {
 
     Integer getCountOnSale(@Param("shopId") Integer shopId);
 
+    Goods getGoodsDetail(@Param("goodsId") Integer goodsId);
+
 }

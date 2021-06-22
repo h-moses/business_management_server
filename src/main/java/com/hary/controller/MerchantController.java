@@ -4,6 +4,7 @@ import com.hary.entity.Merchant;
 import com.hary.service.MerchantService;
 import com.hary.utils.JsonResult;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -17,6 +18,7 @@ import java.util.HashMap;
  * @author 70982
  */
 @RestController
+@Transactional
 public class MerchantController {
 
     @Autowired
@@ -28,6 +30,10 @@ public class MerchantController {
                                @RequestParam("mcPhone") String mcPhone,
                                @RequestParam("mcRealName") String mcRealName,
                                @RequestParam("mcEmail") String mcEmail) {
+        Integer integer = merchantService.queryMcPhone(mcPhone);
+        if (integer != 0) {
+            return new JsonResult("用户已存在",201,null);
+        }
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         String registerTime = sdf.format(new Date());
         Merchant merchant = new Merchant(mcName, mcPwd, mcPhone, mcRealName, mcEmail, registerTime);
@@ -36,8 +42,8 @@ public class MerchantController {
     }
 
     @PostMapping("/merchant/login")
-    public JsonResult login(@RequestParam(value = "mcPhone") String mcPhone,
-                            @RequestParam(value = "mcPwd") String mcPwd) {
+    public JsonResult login(@RequestParam("mcPhone") String mcPhone,
+                            @RequestParam("mcPwd") String mcPwd) {
         final String pwd = merchantService.validatePwd(mcPhone);
         if (mcPwd.equals(pwd)) {
             return new JsonResult("登录成功", 200, null);
@@ -60,7 +66,7 @@ public class MerchantController {
         }
     }
 
-    @GetMapping("/merchant/pwd")
+    @PostMapping("/merchant/pwd")
     public JsonResult getPwd(@RequestParam("mcId") Integer mcId) {
         String pwd = merchantService.getPwd(mcId);
         JsonResult result = new JsonResult("获取成功", 200, new HashMap<>());

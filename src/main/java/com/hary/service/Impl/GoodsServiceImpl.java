@@ -76,4 +76,9 @@ public class GoodsServiceImpl implements GoodsService {
     public Integer getCountOnSale(Integer shopId) {
         return goodsDao.getCountOnSale(shopId);
     }
+
+    @Override
+    public Goods getGoodsDetail(Integer goodsId) {
+        return goodsDao.getGoodsDetail(goodsId);
+    }
 }

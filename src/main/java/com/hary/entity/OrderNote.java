@@ -17,6 +17,7 @@ public class OrderNote {
     private Integer orderId;
     private Integer goodsId;
     private String goodsName;
+    private String goodsAvatar;
     private Integer goodsQuantity;
     private Float unitPrice;
     private Float goodsAmount;

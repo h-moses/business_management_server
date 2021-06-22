@@ -33,4 +33,6 @@ public interface GoodsService {
     void updateGoods(Goods goods);
 
     Integer getCountOnSale(Integer shopId);
+
+    Goods getGoodsDetail(Integer goodsId);
 }

@@ -40,4 +40,9 @@ public class MerchantServiceImpl implements MerchantService {
     public void amendPwd(Integer mcId, String mcPwd) {
         merchantDao.updatePwd(mcId, mcPwd);
     }
+
+    @Override
+    public Integer queryMcPhone(String mcPhone) {
+        return merchantDao.queryMcPhone(mcPhone);
+    }
 }

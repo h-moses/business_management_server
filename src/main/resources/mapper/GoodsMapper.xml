@@ -42,7 +42,10 @@
 
     <select id="getGoodsByName" resultType="Goods">
         select *
-        from goods where shop_id = #{shopId} and goods_name like CONCAT('%',#{goodsName},'%')
+        from goods where shop_id = #{shopId}
+        <if test="goodsName != null">
+            and goods_name like CONCAT('%',#{goodsName},'%')
+        </if>
     </select>
 
     <select id="getGoodsByState" resultType="Goods">
@@ -68,7 +71,11 @@
 
     <select id="getCountOnSale" resultType="Integer">
         select COUNT(*)
-        from goods where shop_id = #{shopId} and goods_state = 1;
+        from goods where shop_id = #{shopId} and goods_state = 1
     </select>
 
+    <select id="getGoodsDetail" resultType="Goods">
+        select goods_name, goods_avatar, main_category, secondary_category, selling_way, unit_price, box_size, box_price, subordinated_rate, orgin_place, shop_id, good_stuff, goods_state
+        from goods where goods_id = #{goodsId}
+    </select>
 </mapper>

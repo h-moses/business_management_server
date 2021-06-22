@@ -16,4 +16,6 @@ public interface MerchantService {
     Merchant getInfo(String mcPhone);
 
     void amendPwd(Integer mcId, String mcPwd);
+
+    Integer queryMcPhone(String mcPhone);
 }
