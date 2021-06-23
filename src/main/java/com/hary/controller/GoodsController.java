@@ -38,6 +38,7 @@ public class GoodsController {
     @PostMapping("/store/list")
     public JsonResult getStoreList(@RequestParam("shopId") Integer shopId,
                                    @RequestParam(required = false,value = "condition") Integer condition) {
+        System.out.println(condition);
         List<Goods> storeList = goodsService.getStoreList(shopId, condition);
         JsonResult result = new JsonResult("获取成功",200,new HashMap<>());
         result.data("list",storeList);
@@ -54,10 +55,10 @@ public class GoodsController {
 
     @PostMapping("/goods/add")
     public JsonResult addGoods(@RequestParam("goodsName") String goodsName,
-                               @RequestParam("goodsAvatar") String goodsAvatar,
+                               @RequestParam(required = false,value = "goodsAvatar") String goodsAvatar,
                                @RequestParam("mainCategory") String   mainCategory,
                                @RequestParam("secondaryCategory") String secondaryCategory,
-                               @RequestParam("saleWay") Integer sellingWay,
+                               @RequestParam("sellingWay") Integer sellingWay,
                                @RequestParam("unitPrice") Float unitPrice,
                                @RequestParam("boxSize") Float boxSize,
                                @RequestParam("boxPrice") Float boxPrice,

@@ -62,11 +62,11 @@
     </update>
 
     <insert id="addGoods">
-        insert into goods(goods_name, goods_avatar, selling_way, unit_price, box_size, box_price, subordinated_rate, orgin_place, goods_state, shop_id, good_stuff) VALUES(#{goods.goodsName},#{goods.goodsAvatar},#{goods.sellingWay},#{goods.unitPrice},#{goods.boxSize},#{goods.boxPrice},#{goods.subordinatedRate},#{goods.orginPlace},#{goods.goodsState},#{goods.shopId},#{goods.goodStuff})
+        insert into goods(goods_name, goods_avatar, selling_way, unit_price, box_size, box_price, subordinated_rate, origin_place, goods_state, shop_id, good_stuff) VALUES(#{goods.goodsName},#{goods.goodsAvatar},#{goods.sellingWay},#{goods.unitPrice},#{goods.boxSize},#{goods.boxPrice},#{goods.subordinatedRate},#{goods.originPlace},#{goods.goodsState},#{goods.shopId},#{goods.goodStuff})
     </insert>
 
     <update id="updateGoods">
-        update goods set goods_name = #{goods.goodsName},goods_avatar = #{goods.goodsAvatar},selling_way = #{goods.sellingWay},unit_price = #{goods.unitPrice},box_size = #{goods.boxSize},box_price = #{goods.boxPrice},subordinated_rate = #{goods.subordinatedRate},orgin_place = #{goods.orginPlace},goods_state = #{goods.goodsState},shop_id = #{goods.shopId},good_stuff = #{goods.goodStuff} where goods_id = #{goods.goodsId}
+        update goods set goods_name = #{goods.goodsName},goods_avatar = #{goods.goodsAvatar},selling_way = #{goods.sellingWay},unit_price = #{goods.unitPrice},box_size = #{goods.boxSize},box_price = #{goods.boxPrice},subordinated_rate = #{goods.subordinatedRate},origin_place = #{goods.originPlace},goods_state = #{goods.goodsState},shop_id = #{goods.shopId},good_stuff = #{goods.goodStuff} where goods_id = #{goods.goodsId}
     </update>
 
     <select id="getCountOnSale" resultType="Integer">
@@ -75,7 +75,7 @@
     </select>
 
     <select id="getGoodsDetail" resultType="Goods">
-        select goods_name, goods_avatar, main_category, secondary_category, selling_way, unit_price, box_size, box_price, subordinated_rate, orgin_place, shop_id, good_stuff, goods_state
+        select goods_name, goods_avatar, main_category, secondary_category, selling_way, unit_price, box_size, box_price, subordinated_rate, origin_place, shop_id, good_stuff, goods_state
         from goods where goods_id = #{goodsId}
     </select>
 </mapper>
