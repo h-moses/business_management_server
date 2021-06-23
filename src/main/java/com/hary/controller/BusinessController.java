@@ -7,6 +7,7 @@ import com.hary.utils.JsonResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -25,7 +26,7 @@ public class BusinessController {
     @Autowired
     private GoodsService goodsService;
 
-    @GetMapping("/business/data")
+    @PostMapping("/business/data")
     public JsonResult getBusinessData(@RequestParam("shopId") Integer shopId) {
         Float todayAmount = orderService.getTodayAmount(shopId);
         Integer todayOrderCount = orderService.getTodayOrderCount(shopId);
@@ -43,7 +44,9 @@ public class BusinessController {
         result.data("countOnSale",countOnSale);
         result.data("allCustomers",allCustomers);
         result.data("todayCustomers",todayCustomers);
-        result.data("oldRate",oldCustomers / todayCustomers);
+        if (todayCustomers != 0) {
+            result.data("oldRate",oldCustomers / todayCustomers);
+        }
         return result;
     }
 }

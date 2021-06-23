@@ -52,7 +52,7 @@
 
     <select id="getTodayOrderBox" resultType="Integer">
         select SUM(N.goods_quantity)
-        from `order` O inner join orderNote N on o.order_id = N.order_id where O.shop_id = #{shopId}
+        from `order` O inner join orderNote N on O.order_id = N.order_id where O.shop_id = #{shopId}
     </select>
 
     <select id="getOrderGoodsCount" resultType="Integer">
