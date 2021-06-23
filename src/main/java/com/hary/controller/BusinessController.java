@@ -44,9 +44,7 @@ public class BusinessController {
         result.data("countOnSale",countOnSale);
         result.data("allCustomers",allCustomers);
         result.data("todayCustomers",todayCustomers);
-        if (todayCustomers != 0) {
-            result.data("oldRate",oldCustomers / todayCustomers);
-        }
+        result.data("oldCustomers",oldCustomers);
         return result;
     }
 }

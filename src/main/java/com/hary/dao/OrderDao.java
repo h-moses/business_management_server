@@ -1,8 +1,11 @@
 package com.hary.dao;
 
 import com.hary.entity.Order;
+import com.sun.org.apache.xpath.internal.operations.Or;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
 
 /**
  * @author 70982
@@ -28,5 +31,5 @@ public interface OrderDao {
 
     Integer getOldCustomers(@Param("shopId") Integer shopId);
 
-    Order getOrder(@Param("shopId") Integer shopId, @Param("orderState") Integer orderState);
+    List<Order> getOrder(@Param("shopId") Integer shopId, @Param("orderState") Integer orderState);
 }

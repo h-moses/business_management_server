@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.HashMap;
+import java.util.List;
 
 /**
  * @author 70982
@@ -44,8 +45,7 @@ public class OrderController {
     @PostMapping("/order/query")
     public JsonResult getOrderDetail(@RequestParam("shopId") Integer shopId,
                                      @RequestParam(required = false, value = "orderState") Integer orderState) {
-        System.out.println(orderState);
-        Order order = orderService.getOrders(shopId, orderState);
+        List<Order> order = orderService.getOrders(shopId, orderState);
         JsonResult result = new JsonResult("获取成功", 200, new HashMap<>());
         result.data("order", order);
         return result;

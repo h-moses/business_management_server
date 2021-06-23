@@ -6,6 +6,8 @@ import com.hary.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * @author 70982
  */
@@ -62,7 +64,7 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public Order getOrders(Integer shopId, Integer orderState) {
+    public List<Order> getOrders(Integer shopId, Integer orderState) {
         return orderDao.getOrder(shopId, orderState);
     }
 }

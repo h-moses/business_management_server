@@ -12,10 +12,10 @@
 
     <select id="getNewCustomer" resultType="Integer">
         select COUNT(ciot.cs_id)
-        from (select DISTINCT cs_id, MIN(order_time) as mot
+        from (select cs_id, MIN(order_time) as mot
               from `order`
-              where shop_id = #{shopId}) as ciot
-        where DATEDIFF(ciot.mot, NOW()) = 1;
+              where shop_id = #{shopId} GROUP BY cs_id ) as ciot
+        where DATEDIFF(ciot.mot, NOW()) = -1;
     </select>
 
     <select id="getSevenDayOrder" resultType="Integer">
@@ -34,11 +34,12 @@
             <result property="goodsName" column="goods_name"/>
             <result property="goodsAvatar" column="goods_avatar"/>
             <result property="goodsQuantity" column="goods_quantity"/>
+            <result property="unitPrice" column="unit_price"/>
             <result property="goodsAmount" column="goods_amount"/>
         </association>
     </resultMap>
     <select id="getOrder" resultMap="orderDetail">
-        select o.order_id,o.order_time,o.order_amount,o.order_state,odn.goods_name,odn.goods_avatar,odn.goods_quantity,odn.goods_amount
+        select o.order_id,o.order_time,o.order_amount,o.order_state,odn.goods_name,odn.goods_avatar,odn.goods_quantity,odn.unit_price,odn.goods_amount
         from `order` as o,`orderNote` as odn where shop_id = #{shopId} and o.order_id = odn.order_id
         <if test="orderState != null">
             and o.order_state = #{orderState}
@@ -71,8 +72,8 @@
     </select>
 
     <select id="getOldCustomers" resultType="Integer">
-        select COUNT(*)
-        from (select DISTINCT cs_id,MIN(order_time) as mot
-              from `order` where shop_id = #{shopId}) as ciot where DATEDIFF(ciot.mot,NOW()) >= 1
+        select COUNT(cs_id)
+        from (select cs_id,MIN(order_time) as mot
+              from `order` where shop_id = #{shopId} Group By cs_id) as ciot where DATEDIFF(ciot.mot,NOW()) &lt;= -1
     </select>
 </mapper>

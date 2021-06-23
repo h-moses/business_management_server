@@ -3,6 +3,8 @@ package com.hary.service;
 import com.hary.entity.Order;
 import org.apache.ibatis.annotations.Param;
 
+import java.util.List;
+
 /**
  * @author 70982
  */
@@ -26,6 +28,6 @@ public interface OrderService {
 
     Integer getOldCustomers(Integer shopId);
 
-    Order getOrders(Integer shopId, Integer orderState);
+    List<Order> getOrders(Integer shopId, Integer orderState);
 
 }
