@@ -21,15 +21,15 @@ public interface GoodsDao {
 
     List<Goods> getStoreList(@Param("shopId") Integer shopId, @Param("condition") Integer condition);
 
-    void updateStore(@Param("goodsId") Integer goodsId,@Param("goodsName") String goodsName,@Param("storeQuantity") Integer storeQuantity);
+    void updateStore(@Param("goodsId") Integer goodsId, @Param("goodsName") String goodsName, @Param("storeQuantity") Integer storeQuantity);
 
-    List<Goods> getGoodsByName(@Param("shopId") Integer shopId,@Param("goodsName") String goodsName);
+    List<Goods> getGoodsByName(@Param("shopId") Integer shopId, @Param("goodsName") String goodsName);
 
-    List<Goods> getGoodsByState(@Param("shopId") Integer shopId,@Param("goodsState") Integer goodsState);
+    List<Goods> getGoodsByState(@Param("shopId") Integer shopId, @Param("goodsState") Integer goodsState);
 
     void deleteGoods(@Param("goodsId") Integer goodsId);
 
-    void updateState(@Param("goodsId") Integer goodsId,@Param("goodsState") Integer goodsState);
+    void updateState(@Param("goodsId") Integer goodsId, @Param("goodsState") Integer goodsState);
 
     void addGoods(@Param("goods") Goods goods);
 

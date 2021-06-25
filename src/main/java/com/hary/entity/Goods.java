@@ -29,7 +29,7 @@ public class Goods {
     private Integer goodStuff;
     private Integer storeQuantity;
 
-    public Goods(String goodsName,String goodsAvatar,String mainCategory,String secondaryCategory,Integer sellingWay,Float unitPrice,Float boxSize,Float boxPrice,String subordinatedRate,String originPlace,Integer shopId,Integer goodsState,Integer goodStuff) {
+    public Goods(String goodsName, String goodsAvatar, String mainCategory, String secondaryCategory, Integer sellingWay, Float unitPrice, Float boxSize, Float boxPrice, String subordinatedRate, String originPlace, Integer shopId, Integer goodsState, Integer goodStuff) {
         this.goodsName = goodsName;
         this.goodsAvatar = goodsAvatar;
         this.mainCategory = mainCategory;

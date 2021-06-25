@@ -14,7 +14,8 @@
         select COUNT(ciot.cs_id)
         from (select cs_id, MIN(order_time) as mot
               from `order`
-              where shop_id = #{shopId} GROUP BY cs_id ) as ciot
+              where shop_id = #{shopId}
+              GROUP BY cs_id) as ciot
         where DATEDIFF(ciot.mot, NOW()) = -1;
     </select>
 
@@ -39,7 +40,8 @@
         </association>
     </resultMap>
     <select id="getOrder" resultMap="orderDetail">
-        select o.order_id,o.order_time,o.order_amount,o.order_state,odn.goods_name,odn.goods_avatar,odn.goods_quantity,odn.unit_price,odn.goods_amount
+        select
+        o.order_id,o.order_time,o.order_amount,o.order_state,odn.goods_name,odn.goods_avatar,odn.goods_quantity,odn.unit_price,odn.goods_amount
         from `order` as o,`orderNote` as odn where shop_id = #{shopId} and o.order_id = odn.order_id
         <if test="orderState != null">
             and o.order_state = #{orderState}
@@ -48,32 +50,45 @@
 
     <select id="getTodayOrderCount" resultType="Integer">
         select COUNT(*)
-        from `order` where shop_id = #{shopId} and DATEDIFF(order_time,NOW()) = 0
+        from `order`
+        where shop_id = #{shopId}
+          and DATEDIFF(order_time, NOW()) = 0
     </select>
 
     <select id="getTodayOrderBox" resultType="Integer">
         select SUM(N.goods_quantity)
-        from `order` O inner join orderNote N on O.order_id = N.order_id where O.shop_id = #{shopId}
+        from `order` O
+                 inner join orderNote N on O.order_id = N.order_id
+        where O.shop_id = #{shopId}
     </select>
 
     <select id="getOrderGoodsCount" resultType="Integer">
         select COUNT(DISTINCT o.goods_id)
-        from `order` JOIN orderNote o on `order`.order_id = o.order_id where shop_id = #{shopId} and DATEDIFF(order_time,NOW()) = 0
+        from `order`
+                 JOIN orderNote o on `order`.order_id = o.order_id
+        where shop_id = #{shopId}
+          and DATEDIFF(order_time, NOW()) = 0
     </select>
 
     <select id="getAllCustomers" resultType="Integer">
         select COUNT(DISTINCT cs_id)
-        from `order` where shop_id = #{shopId}
+        from `order`
+        where shop_id = #{shopId}
     </select>
 
     <select id="getTodayCustomers" resultType="Integer">
         select COUNT(DISTINCT cs_id)
-        from `order` where shop_id = #{shopId} and DATEDIFF(order_time,NOW()) = 0
+        from `order`
+        where shop_id = #{shopId}
+          and DATEDIFF(order_time, NOW()) = 0
     </select>
 
     <select id="getOldCustomers" resultType="Integer">
         select COUNT(cs_id)
-        from (select cs_id,MIN(order_time) as mot
-              from `order` where shop_id = #{shopId} Group By cs_id) as ciot where DATEDIFF(ciot.mot,NOW()) &lt;= -1
+        from (select cs_id, MIN(order_time) as mot
+              from `order`
+              where shop_id = #{shopId}
+              Group By cs_id) as ciot
+        where DATEDIFF(ciot.mot, NOW()) &lt;= -1
     </select>
 </mapper>

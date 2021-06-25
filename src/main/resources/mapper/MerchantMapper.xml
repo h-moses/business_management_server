@@ -40,7 +40,8 @@
 
     <select id="queryMcPhone" resultType="Integer">
         select COUNT(*)
-        from merchant where mc_phone = #{mcPhone};
+        from merchant
+        where mc_phone = #{mcPhone};
     </select>
 
 </mapper>

@@ -5,7 +5,6 @@ import com.hary.service.MerchantService;
 import com.hary.utils.JsonResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -32,7 +31,7 @@ public class MerchantController {
                                @RequestParam("mcEmail") String mcEmail) {
         Integer integer = merchantService.queryMcPhone(mcPhone);
         if (integer != 0) {
-            return new JsonResult("用户已存在",201,null);
+            return new JsonResult("用户已存在", 201, null);
         }
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         String registerTime = sdf.format(new Date());

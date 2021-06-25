@@ -1,12 +1,10 @@
 package com.hary.controller;
 
-import com.hary.entity.Goods;
 import com.hary.service.GoodsService;
 import com.hary.service.OrderService;
 import com.hary.utils.JsonResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -36,15 +34,15 @@ public class BusinessController {
         Integer allCustomers = orderService.getAllCustomers(shopId);
         Integer todayCustomers = orderService.getTodayCustomers(shopId);
         Integer oldCustomers = orderService.getOldCustomers(shopId);
-        JsonResult result = new JsonResult("获取成功",200,new HashMap<>());
-        result.data("todayAmount",todayAmount);
-        result.data("todayOrderCount",todayOrderCount);
-        result.data("todayOrderBox",todayOrderBox);
-        result.data("orderGoodsCount",orderGoodsCount);
-        result.data("countOnSale",countOnSale);
-        result.data("allCustomers",allCustomers);
-        result.data("todayCustomers",todayCustomers);
-        result.data("oldCustomers",oldCustomers);
+        JsonResult result = new JsonResult("获取成功", 200, new HashMap<>());
+        result.data("todayAmount", todayAmount);
+        result.data("todayOrderCount", todayOrderCount);
+        result.data("todayOrderBox", todayOrderBox);
+        result.data("orderGoodsCount", orderGoodsCount);
+        result.data("countOnSale", countOnSale);
+        result.data("allCustomers", allCustomers);
+        result.data("todayCustomers", todayCustomers);
+        result.data("oldCustomers", oldCustomers);
         return result;
     }
 }
