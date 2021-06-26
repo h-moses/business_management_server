@@ -59,7 +59,7 @@
         select SUM(N.goods_quantity)
         from `order` O
                  inner join orderNote N on O.order_id = N.order_id
-        where O.shop_id = #{shopId}
+        where O.shop_id = #{shopId} and DATEDIFF(O.order_time,NOW()) = 0
     </select>
 
     <select id="getOrderGoodsCount" resultType="Integer">
@@ -89,6 +89,6 @@
               from `order`
               where shop_id = #{shopId}
               Group By cs_id) as ciot
-        where DATEDIFF(ciot.mot, NOW()) &lt;= -1
+        where DATEDIFF(ciot.mot, NOW()) = 0
     </select>
 </mapper>
