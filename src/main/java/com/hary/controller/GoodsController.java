@@ -66,17 +66,18 @@ public class GoodsController {
                                @RequestParam("shopId") Integer shopId,
                                @RequestParam("goodStuff") Integer goodStuff,
                                @RequestParam("goodsState") Integer goodsState) {
-        Goods goods = new Goods(goodsName, goodsAvatar, mainCategory, secondaryCategory, sellingWay, unitPrice, boxSize, boxPrice, subordinatedRate, originPlace, shopId, goodsState, goodStuff);
+        Goods goods = new Goods(null, goodsName, goodsAvatar, mainCategory, secondaryCategory, sellingWay, unitPrice, boxSize, boxPrice, subordinatedRate, originPlace, shopId, goodsState, goodStuff);
         goodsService.addGoods(goods);
         return new JsonResult("添加成功", 200, null);
     }
 
     @PostMapping("/goods/update")
-    public JsonResult updateGoods(@RequestParam("goodsName") String goodsName,
+    public JsonResult updateGoods(@RequestParam("goodsId") Integer goodsId,
+                                  @RequestParam("goodsName") String goodsName,
                                   @RequestParam("goodsAvatar") String goodsAvatar,
                                   @RequestParam("mainCategory") String mainCategory,
                                   @RequestParam("secondaryCategory") String secondaryCategory,
-                                  @RequestParam("saleWay") Integer sellingWay,
+                                  @RequestParam("sellingWay") Integer sellingWay,
                                   @RequestParam("unitPrice") Float unitPrice,
                                   @RequestParam("boxSize") Float boxSize,
                                   @RequestParam("boxPrice") Float boxPrice,
@@ -85,9 +86,9 @@ public class GoodsController {
                                   @RequestParam("shopId") Integer shopId,
                                   @RequestParam("goodStuff") Integer goodStuff,
                                   @RequestParam("goodsState") Integer goodsState) {
-        Goods goods = new Goods(goodsName, goodsAvatar, mainCategory, secondaryCategory, sellingWay, unitPrice, boxSize, boxPrice, subordinatedRate, originPlace, shopId, goodsState, goodStuff);
+        Goods goods = new Goods(goodsId, goodsName, goodsAvatar, mainCategory, secondaryCategory, sellingWay, unitPrice, boxSize, boxPrice, subordinatedRate, originPlace, shopId, goodsState, goodStuff);
         goodsService.updateGoods(goods);
-        return new JsonResult("添加成功", 200, null);
+        return new JsonResult("修改成功", 200, null);
     }
 
     @PostMapping("/goods/delete")
@@ -125,7 +126,7 @@ public class GoodsController {
     public JsonResult getGoodsDetail(@RequestParam("goodsId") Integer goodsId) {
         Goods goodsDetail = goodsService.getGoodsDetail(goodsId);
         JsonResult result = new JsonResult("获取成功", 200, new HashMap<>());
-        result.data("goodsDetail", goodsDetail);
+        result.data("goodsDetail",goodsDetail);
         return result;
     }
 }

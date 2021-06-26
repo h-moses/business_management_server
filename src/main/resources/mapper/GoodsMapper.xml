@@ -45,7 +45,7 @@
 
     <update id="updateStore">
         update goods
-        set goods_name     = #{goodsName},
+        set goods_name = #{goodsName},
             store_quantity = #{storeQuantity}
         where goods_id = #{goodsId}
     </update>
